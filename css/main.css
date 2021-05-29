@@ -1,17 +1,23 @@
 body {
   max-height: 100vh;
+  min-width: 1097px;
+}
+.consola pre {
+  color: #16bc79;
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
 }
 .consola {
   background-color: #1e1e1e;
-  color: #16bc79;
 }
 .container-main {
   background-color: #90a081;
   min-width: 725px;
 }
 .container-main button {
-  width: 200px;
-  font-size: 20px;
+  width: 215px;
+  font-size: 22px;
 }
 .sidebar {
   background-color: #f1ac7b;
