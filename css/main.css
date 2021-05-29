@@ -1,7 +1,10 @@
-.console {
-  border: 1px dotted blue;
+body {
+  max-height: 100vh;
 }
-
+.consola {
+  background-color: #1e1e1e;
+  color: #16bc79;
+}
 .container-main {
   background-color: #90a081;
   min-width: 725px;
@@ -14,6 +17,7 @@
   background-color: #f1ac7b;
 }
 .container-sidebar {
+  max-height: 800px;
   height: 80%;
   width: inherit;
   border: 1px dotted blue;
