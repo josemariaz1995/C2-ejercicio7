@@ -1,0 +1,21 @@
+.console {
+  border: 1px dotted blue;
+}
+
+.container-main {
+  background-color: #90a081;
+  min-width: 725px;
+}
+.container-main button {
+  width: 200px;
+  font-size: 20px;
+}
+.sidebar {
+  background-color: #f1ac7b;
+}
+.container-sidebar {
+  height: 80%;
+  width: inherit;
+  border: 1px dotted blue;
+  min-width: 267px;
+}
