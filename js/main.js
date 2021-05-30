@@ -2,21 +2,19 @@
    y que devuelva un array con los equipos asignados a personas mayores de esa edad */
 function equiposMayoresEdad(array, edad) {
   const equiposMayores30 = array
-    .map((equipos) => equipos.asignado.empleado)
-    .filter((empleados) => empleados.edad > edad)
-    .reduce((contador, empleado) => [...contador, empleado], []);
+    .filter((equipo) => equipo.asignado.empleado.edad > edad)
+    .reduce((contador, equipo) => [...contador, equipo], []);
   return equiposMayores30;
 }
 /* 2. Una función equiposProvincia que reciba un array de equipos y una provincia,
    y que devuelva un array con los equipos asignados a personas de esa provincia. */
 function equiposProvincia(array, provincia) {
   const equiposPorProvincia = array
-    .map((equipos) => equipos.asignado)
     .filter(
-      (asignado) => asignado.provincia.toUpperCase() === provincia.toUpperCase()
+      (equipos) =>
+        equipos.asignado.provincia.toUpperCase() === provincia.toUpperCase()
     )
-    .map((asignado) => asignado.empleado)
-    .reduce((contador, empleado) => [...contador, empleado], []);
+    .reduce((contador, equipo) => [...contador, equipo], []);
   return equiposPorProvincia;
 }
 /* 3. Una función provincias que reciba un array de equipos
@@ -66,19 +64,17 @@ function edadMedia(array) {
 /* 6.Una función equiposPorEdad que reciba un array de equipos y devuelva los equipos 
    ordenados por edad del trabajador, de más joven a más viejo. */
 function equiposPorEdad(array) {
-  const ordenEquipoPorEdad = array
-    .map((equipos) => equipos.asignado.empleado)
-    .sort((a, b) => {
-      const edadA = a.edad;
-      const edadB = b.edad;
-      if (edadA > edadB) {
-        return 1;
-      }
-      if (edadA < edadB) {
-        return -1;
-      }
-      return 0;
-    });
+  const ordenEquipoPorEdad = array.sort((a, b) => {
+    const edadA = a.asignado.empleado.edad;
+    const edadB = b.asignado.empleado.edad;
+    if (edadA > edadB) {
+      return 1;
+    }
+    if (edadA < edadB) {
+      return -1;
+    }
+    return 0;
+  });
 
   return ordenEquipoPorEdad;
 }
@@ -86,9 +82,30 @@ function equiposPorEdad(array) {
    array con los equipos de ese tipo. */
 function equiposTipo(array, tipo) {
   const equiposPorTipo = array
-    .map((equipos) => equipos)
     .filter((equipo) => equipo.tipo.toUpperCase() === tipo.toUpperCase())
-    .map((equipo) => equipo.asignado.empleado)
-    .reduce((contador, empleado) => [...contador, empleado], []);
+    .reduce((contador, equipo) => [...contador, equipo], []);
   return equiposPorTipo;
 }
+/* 8. Una función trabajadoresTipo que reciba un array de equipos y un tipo, y que devuelva un
+   array de trabajadores con equipo de ese tipo asignado. */
+function trabajadoresTipo(array, tipo) {
+  const trabajadoresPorTipo = array
+    .filter((equipo) => equipo.tipo.toUpperCase() === tipo.toUpperCase())
+    .map((equipo) => equipo.asignado.empleado)
+    .reduce((contador, empleado) => [...contador, empleado.nombre], []);
+  return trabajadoresPorTipo;
+}
+/*  9.Una función equiposPorTipo que reciba un array de equipos y que devuelva un array de equipos organizados por tipo, con esta  */
+function equiposPorTipo(array) {
+  const equiposEnTipo = array.reduce(
+    (contador, equipo, i, array) => [
+      ...contador,
+      `tipo: ${equipo.tipo}`,
+      `equipo: ${array}`,
+    ],
+    []
+  );
+  return equiposEnTipo;
+}
+
+// 11.
