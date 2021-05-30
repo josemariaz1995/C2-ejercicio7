@@ -107,6 +107,23 @@ function equiposPorTipo(array) {
   );
   return equiposEnTipo;
 } */
+function equiposPorTipo(array) {
+  const equiposEnTipo = array
+    .map((equipos) => equipos.tipo)
+    .filter((tipo, i) => tipo.indexOf(tipo) !== i)
+    .reduce(
+      (anteriorTipo, tipo, i, arrayDevuelta) =>
+        anteriorTipo.includes(tipo)
+          ? anteriorTipo
+          : [
+              ...anteriorTipo,
+              tipo,
+              arrayDevuelta.filter((equipo) => equipo.tipo === tipo),
+            ],
+      []
+    );
+  return equiposEnTipo;
+}
 
 // 10.
 
