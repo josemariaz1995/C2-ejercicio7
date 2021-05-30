@@ -95,17 +95,36 @@ function trabajadoresTipo(array, tipo) {
     .reduce((contador, empleado) => [...contador, empleado.nombre], []);
   return trabajadoresPorTipo;
 }
-/*  9.Una función equiposPorTipo que reciba un array de equipos y que devuelva un array de equipos organizados por tipo, con esta  */
+/*   9.Una función equiposPorTipo que reciba un array de equipos y que devuelva un array de equipos organizados por tipo, con esta  
 function equiposPorTipo(array) {
   const equiposEnTipo = array.reduce(
-    (contador, equipo, i, array) => [
+    (contador, equipos) => [
       ...contador,
-      `tipo: ${equipo.tipo}`,
-      `equipo: ${array}`,
+      `Tipo: ${equipos.tipo}`,
+      `equipos: ${array.filter((equipo) => equipo === equipos.tipo)}`,
     ],
     []
   );
   return equiposEnTipo;
+} */
+function equiposPorTipo(array) {
+  const equiposEnTipo = array
+    .map((equipos) => equipos.tipo)
+    .filter((tipo, i) => tipo.indexOf(tipo) !== i)
+    .reduce(
+      (anteriorTipo, tipo, i, arrayDevuelta) =>
+        anteriorTipo.includes(tipo)
+          ? anteriorTipo
+          : [
+              ...anteriorTipo,
+              tipo,
+              arrayDevuelta.filter((equipo) => equipo.tipo === tipo),
+            ],
+      []
+    );
+  return equiposEnTipo;
 }
+
+// 10.
 
 // 11.
