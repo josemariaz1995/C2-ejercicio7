@@ -70,8 +70,7 @@ const equiposTipo = (array, tipo) =>
 const trabajadoresTipo = (array, tipo) =>
   array
     .filter((equipo) => equipo.tipo.toUpperCase() === tipo.toUpperCase())
-    .map((equipo) => equipo.asignado.empleado)
-    .reduce((contador, empleado) => [...contador, empleado.nombre], []);
+    .map((equipo) => equipo.asignado.empleado);
 
 /*   9.Una función equiposPorTipo que reciba un array de equipos y que devuelva un array de equipos organizados por tipo */
 const equiposPorTipo = (array) => {
