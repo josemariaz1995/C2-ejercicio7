@@ -112,19 +112,40 @@ function equiposPorTipo(array) {
     .map((equipos) => equipos.tipo)
     .filter((tipo, i) => tipo.indexOf(tipo) !== i)
     .reduce(
-      (anteriorTipo, tipo, i, arrayDevuelta) =>
+      (anteriorTipo, tipo, i) =>
         anteriorTipo.includes(tipo)
           ? anteriorTipo
           : [
               ...anteriorTipo,
-              tipo,
-              arrayDevuelta.filter((equipo) => equipo.tipo === tipo),
+              {
+                tipo,
+                equpipos: array.filter((equipo) => equipo.tipo === tipo),
+              },
             ],
       []
     );
   return equiposEnTipo;
 }
 
-// 10.
+/*  10.Una función equiposTipoLocalidad que reciba un array de equipos, un tipo y una localidad,
+     y que devuelva un array de equipos de ese tipo y asignados a trabajadores de esa provincia. */
+const equiposTipoLocalidad = (array, tipo, localidad) =>
+  array.filter(
+    (equipos) =>
+      equipos.tipo.toUpperCase() === tipo.toUpperCase() &&
+      equipos.asignado.poblacion.toUpperCase() === localidad.toUpperCase()
+  );
 
-// 11.
+/* 11.Una función resumenEquipos que reciba un array de equipos y que devuelva un array de objetos con esta */
+const resumenEquipos = (array) =>
+  array.reduce(
+    (contador, equipo) => [
+      ...contador,
+      {
+        id: equipo.id,
+        poblacion: equipo.asignado.poblacion,
+        provincia: equipo.asignado.provincia,
+      },
+    ],
+    []
+  );
