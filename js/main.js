@@ -25,14 +25,8 @@ const provincias = (array) =>
 
 const puestos = (array) =>
   array
-    .map((equipos) => equipos.asignado.empleado)
-    .reduce(
-      (contador, empleado) =>
-        empleado.nombre
-          ? [...contador, `${empleado.nombre}  :  ${empleado.puesto}`]
-          : contador,
-      []
-    );
+    .map((equipos) => equipos.asignado.empleado.puesto)
+    .filter((puestos, i, puesto) => puesto.indexOf(puestos) === i);
 
 /* 5.Una función edadMedia que reciba un array de equipos y devuelva la media de edad
    de trabajadores con equipo asignado. */
