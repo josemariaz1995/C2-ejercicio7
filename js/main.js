@@ -1,26 +1,22 @@
 /* 1. Una función equiposMayoresEdad que reciba un array de equipos y una edad,
    y que devuelva un array con los equipos asignados a personas mayores de esa edad */
-function equiposMayoresEdad(array, edad) {
-  const equiposMayores30 = array
+const equiposMayoresEdad = (array, edad) =>
+  array
     .filter((equipo) => equipo.asignado.empleado.edad > edad)
     .reduce((contador, equipo) => [...contador, equipo], []);
-  return equiposMayores30;
-}
 /* 2. Una función equiposProvincia que reciba un array de equipos y una provincia,
    y que devuelva un array con los equipos asignados a personas de esa provincia. */
-function equiposProvincia(array, provincia) {
-  const equiposPorProvincia = array
+const equiposProvincia = (array, provincia) =>
+  array
     .filter(
       (equipos) =>
         equipos.asignado.provincia.toUpperCase() === provincia.toUpperCase()
     )
     .reduce((contador, equipo) => [...contador, equipo], []);
-  return equiposPorProvincia;
-}
 /* 3. Una función provincias que reciba un array de equipos
    y devuelva un array de provincias donde haya equipos. */
-function provincias(array) {
-  const provinciasDondeHayEquipos = array
+const provincias = (array) =>
+  array
     .map((equipos) => equipos.asignado.provincia)
     .filter((provincias, i) => provincias.indexOf(provincias) !== i)
     .reduce(
@@ -30,14 +26,11 @@ function provincias(array) {
           : [...anteriorProvincia, provincia],
       []
     );
-
-  return provinciasDondeHayEquipos;
-}
 /* 4.Una función puestos que reciba un array de equipos y devuelva un array de puestos
    de trabajadores con equipo asignado. */
 
-function puestos(array) {
-  const puestosDeTrabajo = array
+const puestos = (array) =>
+  array
     .map((equipos) => equipos.asignado.empleado)
     .reduce(
       (contador, empleado) =>
@@ -46,12 +39,10 @@ function puestos(array) {
           : contador,
       []
     );
-  console.log(puestosDeTrabajo);
-  return puestosDeTrabajo;
-}
+
 /* 5.Una función edadMedia que reciba un array de equipos y devuelva la media de edad 
    de trabajadores con equipo asignado. */
-function edadMedia(array) {
+const edadMedia = (array) => {
   const edadMediaEmpleados = array
     .map((equipos) => equipos.asignado.empleado.edad)
     .reduce(
@@ -59,12 +50,12 @@ function edadMedia(array) {
       0
     );
   return `${edadMediaEmpleados} años de media`;
-}
+};
 
 /* 6.Una función equiposPorEdad que reciba un array de equipos y devuelva los equipos 
    ordenados por edad del trabajador, de más joven a más viejo. */
-function equiposPorEdad(array) {
-  const ordenEquipoPorEdad = array.sort((a, b) => {
+const equiposPorEdad = (array) =>
+  array.sort((a, b) => {
     const edadA = a.asignado.empleado.edad;
     const edadB = b.asignado.empleado.edad;
     if (edadA > edadB) {
@@ -76,38 +67,23 @@ function equiposPorEdad(array) {
     return 0;
   });
 
-  return ordenEquipoPorEdad;
-}
 /* 7.Una función equiposTipo que reciba un array de equipos y un tipo, y que devuelva un 
    array con los equipos de ese tipo. */
-function equiposTipo(array, tipo) {
-  const equiposPorTipo = array
+const equiposTipo = (array, tipo) =>
+  array
     .filter((equipo) => equipo.tipo.toUpperCase() === tipo.toUpperCase())
     .reduce((contador, equipo) => [...contador, equipo], []);
-  return equiposPorTipo;
-}
+
 /* 8. Una función trabajadoresTipo que reciba un array de equipos y un tipo, y que devuelva un
    array de trabajadores con equipo de ese tipo asignado. */
-function trabajadoresTipo(array, tipo) {
-  const trabajadoresPorTipo = array
+const trabajadoresTipo = (array, tipo) =>
+  array
     .filter((equipo) => equipo.tipo.toUpperCase() === tipo.toUpperCase())
     .map((equipo) => equipo.asignado.empleado)
     .reduce((contador, empleado) => [...contador, empleado.nombre], []);
-  return trabajadoresPorTipo;
-}
-/*   9.Una función equiposPorTipo que reciba un array de equipos y que devuelva un array de equipos organizados por tipo, con esta  
-function equiposPorTipo(array) {
-  const equiposEnTipo = array.reduce(
-    (contador, equipos) => [
-      ...contador,
-      `Tipo: ${equipos.tipo}`,
-      `equipos: ${array.filter((equipo) => equipo === equipos.tipo)}`,
-    ],
-    []
-  );
-  return equiposEnTipo;
-} */
-function equiposPorTipo(array) {
+
+/*   9.Una función equiposPorTipo que reciba un array de equipos y que devuelva un array de equipos organizados por tipo */
+const equiposPorTipo = (array) => {
   const equiposEnTipo = array
     .map((equipos) => equipos.tipo)
     .filter((tipo, i) => tipo.indexOf(tipo) !== i)
@@ -125,7 +101,7 @@ function equiposPorTipo(array) {
       []
     );
   return equiposEnTipo;
-}
+};
 
 /*  10.Una función equiposTipoLocalidad que reciba un array de equipos, un tipo y una localidad,
      y que devuelva un array de equipos de ese tipo y asignados a trabajadores de esa provincia. */
