@@ -42,8 +42,9 @@ const edadMedia = (array) => {
 
 /* 6.Una función equiposPorEdad que reciba un array de equipos y devuelva los equipos
    ordenados por edad del trabajador, de más joven a más viejo. */
-const equiposPorEdad = (array) =>
-  array.sort((a, b) => {
+const equiposPorEdad = (array) => {
+  const equiposOrdenados = [...array];
+  equiposOrdenados.sort((a, b) => {
     const edadA = a.asignado.empleado.edad;
     const edadB = b.asignado.empleado.edad;
     if (edadA > edadB) {
@@ -54,6 +55,8 @@ const equiposPorEdad = (array) =>
     }
     return 0;
   });
+  return equiposOrdenados;
+};
 
 /* 7.Una función equiposTipo que reciba un array de equipos y un tipo, y que devuelva un
    array con los equipos de ese tipo. */
