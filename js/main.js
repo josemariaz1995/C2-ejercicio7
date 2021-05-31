@@ -18,14 +18,8 @@ const equiposProvincia = (array, provincia) =>
 const provincias = (array) =>
   array
     .map((equipos) => equipos.asignado.provincia)
-    .filter((provincias, i) => provincias.indexOf(provincias) !== i)
-    .reduce(
-      (anteriorProvincia, provincia) =>
-        anteriorProvincia.includes(provincia)
-          ? anteriorProvincia
-          : [...anteriorProvincia, provincia],
-      []
-    );
+    .filter((provincias, i, provincia) => provincia.indexOf(provincias) === i);
+
 /* 4.Una función puestos que reciba un array de equipos y devuelva un array de puestos
    de trabajadores con equipo asignado. */
 
@@ -40,7 +34,7 @@ const puestos = (array) =>
       []
     );
 
-/* 5.Una función edadMedia que reciba un array de equipos y devuelva la media de edad 
+/* 5.Una función edadMedia que reciba un array de equipos y devuelva la media de edad
    de trabajadores con equipo asignado. */
 const edadMedia = (array) => {
   const edadMediaEmpleados = array
@@ -52,7 +46,7 @@ const edadMedia = (array) => {
   return `${edadMediaEmpleados} años de media`;
 };
 
-/* 6.Una función equiposPorEdad que reciba un array de equipos y devuelva los equipos 
+/* 6.Una función equiposPorEdad que reciba un array de equipos y devuelva los equipos
    ordenados por edad del trabajador, de más joven a más viejo. */
 const equiposPorEdad = (array) =>
   array.sort((a, b) => {
@@ -67,7 +61,7 @@ const equiposPorEdad = (array) =>
     return 0;
   });
 
-/* 7.Una función equiposTipo que reciba un array de equipos y un tipo, y que devuelva un 
+/* 7.Una función equiposTipo que reciba un array de equipos y un tipo, y que devuelva un
    array con los equipos de ese tipo. */
 const equiposTipo = (array, tipo) =>
   array
