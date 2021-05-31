@@ -2,6 +2,12 @@ body {
   max-height: 100vh;
   min-width: 1097px;
 }
+ul,
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 .consola pre {
   color: #16bc79;
   overflow: scroll;
