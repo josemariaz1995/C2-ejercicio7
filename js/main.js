@@ -73,8 +73,8 @@ const trabajadoresTipo = (array, tipo) =>
     .map((equipo) => equipo.asignado.empleado);
 
 /*   9.Una función equiposPorTipo que reciba un array de equipos y que devuelva un array de equipos organizados por tipo */
-const equiposPorTipo = (array) => {
-  const equiposEnTipo = array
+const equiposPorTipo = (array) =>
+  /* const equiposEnTipo = array
     .map((equipos) => equipos.tipo)
     .filter((tipo, i) => tipo.indexOf(tipo) !== i)
     .reduce(
@@ -89,8 +89,17 @@ const equiposPorTipo = (array) => {
       ],
       []
     );
-  return equiposEnTipo;
-};
+  return equiposEnTipo; */
+  array.reduce((acumulador, equipo) => {
+    const { tipo } = equipo;
+    const subArray = acumulador.find((equipo) => equipo.tipo === tipo);
+    if (subArray) {
+      subArray.equipos.push(equipo);
+      return acumulador;
+    } else {
+      return [...acumulador, { tipo, equipos: [equipo] }];
+    }
+  }, []);
 
 /*  10.Una función equiposTipoLocalidad que reciba un array de equipos, un tipo y una localidad,
      y que devuelva un array de equipos de ese tipo y asignados a trabajadores de esa provincia. */
