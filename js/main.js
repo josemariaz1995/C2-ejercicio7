@@ -89,15 +89,14 @@ const equiposPorTipo = (array) => {
     .filter((tipo, i) => tipo.indexOf(tipo) !== i)
     .reduce(
       (anteriorTipo, tipo, i) =>
-        anteriorTipo.includes(tipo)
-          ? anteriorTipo
-          : [
-              ...anteriorTipo,
-              {
-                tipo,
-                equpipos: array.filter((equipo) => equipo.tipo === tipo),
-              },
-            ],
+        anteriorTipo.includes(tipo) ? anteriorTipo : [...anteriorTipo, tipo],
+      []
+    )
+    .reduce(
+      (contador, tipo) => [
+        ...contador,
+        { tipo, equipos: array.filter((equipo) => equipo.tipo === tipo) },
+      ],
       []
     );
   return equiposEnTipo;
